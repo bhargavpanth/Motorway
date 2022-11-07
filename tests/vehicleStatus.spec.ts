@@ -30,6 +30,7 @@ describe('Intergration tests for vehicle status route', () => {
                 expect(response).to.equal(null)
             })
         })
+
         describe('Providing an invalid vehicle ID', () => {
             let response = null
             let error = null
@@ -49,6 +50,7 @@ describe('Intergration tests for vehicle status route', () => {
                 expect(response).to.equal(null)
             })
         })
+
         describe('Not providing a timestamp', () => {
             let response = null
             let error = null
@@ -67,6 +69,7 @@ describe('Intergration tests for vehicle status route', () => {
                 expect(response).to.equal(null)
             })
         })
+
         describe('Providing an invalid timestamp', () => {
             let response = null
             let error = null
@@ -140,7 +143,7 @@ describe('Intergration tests for vehicle status route', () => {
             })
         })
 
-        describe('a minute before the date/time of a', () => {
+        describe('just before the date/time of a', () => {
             describe('sold transaction', () => {
                 let response = null
                 let error = null
@@ -194,7 +197,7 @@ describe('Intergration tests for vehicle status route', () => {
             })
         })
 
-        describe('a minute after the date/time of a', () => {
+        describe('just after the date/time of a', () => {
             describe('sold transaction', () => {
                 let response = null
                 let error = null

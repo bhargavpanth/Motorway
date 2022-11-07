@@ -135,7 +135,7 @@ describe('Intergration tests for vehicle status route', () => {
                 });
             });
         });
-        describe('a minute before the date/time of a', () => {
+        describe('just before the date/time of a', () => {
             describe('sold transaction', () => {
                 let response = null;
                 let error = null;
@@ -186,7 +186,7 @@ describe('Intergration tests for vehicle status route', () => {
                 });
             });
         });
-        describe('a minute after the date/time of a', () => {
+        describe('just after the date/time of a', () => {
             describe('sold transaction', () => {
                 let response = null;
                 let error = null;
@@ -223,6 +223,24 @@ describe('Intergration tests for vehicle status route', () => {
                 let response = null;
                 let error = null;
                 const quotedDate = `2022-09-11%2009%3A11%3A45%2B00`;
+                before(async () => {
+                    await requestClient.get(`/vehicle/3?timestamp=${quotedDate}`)
+                        .then(data => response = data)
+                        .catch(err => error = err);
+                });
+                it('should not throw an error', () => {
+                    (0, expect_js_1.default)(error).to.equal(null);
+                });
+                it('should return a response stating quoted', () => {
+                    (0, expect_js_1.default)(response.data.status).to.equal('quoted');
+                });
+            });
+        });
+        describe('a second after the date/time of a', () => {
+            describe('quoted transaction', () => {
+                let response = null;
+                let error = null;
+                const quotedDate = `2022-09-11%2009%3A11%3A46%2B00`;
                 before(async () => {
                     await requestClient.get(`/vehicle/3?timestamp=${quotedDate}`)
                         .then(data => response = data)
